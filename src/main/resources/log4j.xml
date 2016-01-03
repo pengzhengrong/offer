@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- STRUTSCX LOG4J CONFIGURATION - XML style -->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- 控制台 -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p -  %m%n" />
+		</layout>
+	</appender>
+	<appender name="SYSTEM" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="File" value="E:/log/account/system.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p - %m%n" />
+		</layout>
+	</appender>
+	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="File" value="E:/log/account/error.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p - %m%n" />
+		</layout>
+	</appender>
+	<appender name="Manage" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="File" value="E:/log/account/manage.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="Db" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Append" value="true" />
+		<param name="File" value="E:/log/account/db.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="accountBook.logger.system">
+		<level value="DEBUG" />
+		<appender-ref ref="SYSTEM" />
+	</logger>
+
+	<logger name="accountBook.logger.db">
+		<level value="INFO" />
+		<appender-ref ref="Db" />
+	</logger>
+
+	<logger name="accountBook.logger.error">
+		<level value="ERROR" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="accountBook.logger.manage">
+		<level value="DEBUG" />
+		<appender-ref ref="Manage" />
+	</logger>
+	<logger name="com.mchange">
+		<level value="ERROR" />
+		<appender-ref ref="SYSTEM" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="INFO" />
+		<appender-ref ref="SYSTEM" />
+	</logger>
+	<logger name="org.apache">
+		<level value="INFO" />
+		<appender-ref ref="SYSTEM" />
+	</logger>
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</log4j:configuration>
+
+
+
+
