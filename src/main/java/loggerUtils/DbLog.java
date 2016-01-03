@@ -19,4 +19,8 @@ public class DbLog {
 		DbLogAPI.info(sql, ResultCode.SUCCESS.result, "select");
 	}
 	
+	public static void sql( String sql , String result , String method ){
+		DbLogAPI.info(sql, result, method);
+	}
+	
 }

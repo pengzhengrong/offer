@@ -95,20 +95,19 @@ public class LoginAction {
 	@RequestMapping("login/checkName")
 	public int checkName(String username,
 			ModelMap model, HttpServletRequest request,HttpServletResponse response){
-//		int ishas = userServiceImpl.checkName( username );
-		int ishas = 1;
+		int ishas = userServiceImpl.checkName( username );
 		return ishas;
 	}
 	
 	@RequestMapping("login/doRegister")
 	public void doregister(String username, String password,
 			ModelMap model, HttpServletRequest request,HttpServletResponse response){
-//		boolean isok = userServiceImpl.register(username, password);
-		boolean isok = false;
-		
-	
+		boolean isok = userServiceImpl.register(username, password);
+		debugLog.debug("login/doRegister", username+" "+password);
+//		boolean isok = false;
 			try {
 				PrintWriter write = response.getWriter();
+				//response.setContentType("text/html;charset=UTF-8");
 				if( isok ){
 					write.write("<script>alert(\"恭喜，注册成功!\");window.close();</script>");
 				}else{

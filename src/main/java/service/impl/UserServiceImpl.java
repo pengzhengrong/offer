@@ -21,13 +21,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean register(String userName, String pwd) {
 		// TODO Auto-generated method stub
-		return false;
+		return userDao.register(userName, pwd);
 	}
 
 	@Override
 	public int checkName(String userName) {
 		// TODO Auto-generated method stub
-		return 0;
+		return userDao.checkName(userName);
 	}
 
 }
