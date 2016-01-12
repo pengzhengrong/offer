@@ -83,6 +83,10 @@ public class AdminAction {
 		int pageSize = 2;
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
+		if( nowpage != null){
+			nowPage = Integer.parseInt( nowpage );
+			pageSize = Integer.parseInt( pagesize );
+		}
 		int totalRows = adminService.getMaxRows(sql);
 		List<CompanyPo> poList =  adminService.queryByPage(sql, nowPage, pageSize,CompanyPo.class);
 		model.addAttribute("poList", poList );

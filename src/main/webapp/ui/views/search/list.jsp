@@ -96,7 +96,7 @@ function resume(companyName,jobName){
 	</c:if>
 	</div>
 	<div>
-		<p:Page nowPage="1" pageSize="2" dataSourceUrl=""/>
+		<p:Page nowPage="${nowPage}" totalRows="${totalRows }" pageSize="${pageSize}" form="searchFormHead" dataSourceUrl="${rc.contextPath }/search/list"/>
 	</div>
 	
 </div>

@@ -32,18 +32,29 @@ public class SearchAction {
 		if( map == null ){
 			debugLog.debug("search/list", "map is null");
 		}
+		int nowPage = 1;
+		int pageSize = 2;
+		String nowpage = request.getParameter("nowPage");
+		String pagesize = request.getParameter("pageSize");
+		if( nowpage != null){
+			nowPage = Integer.parseInt( nowpage );
+			pageSize = Integer.parseInt( pagesize );
+		}
 		if( StringUtils.isNotBlank( map.get("jobs")) ){
-			List<JobPo> jobList = (List<JobPo>) searchService.searchFor(map, value);
+			List<JobPo> jobList = (List<JobPo>) searchService.searchByPage(map, value, nowPage, pageSize, JobPo.class);
 			model.addAttribute("type", "job");
 			model.addAttribute("poList", jobList);
 		}else{
-			List<CompanyPo> companyList = (List<CompanyPo>) searchService.searchFor(map, value);
+			List<CompanyPo> companyList = (List<CompanyPo>) searchService.searchByPage(map, value, nowPage, pageSize, CompanyPo.class);
 			model.addAttribute("type", "company");
 			model.addAttribute("poList", companyList);
 		}
+		int totalRows = searchService.getMaxRows();
 		model.addAttribute("key", key);
 		model.addAttribute("value", value);
-		
+		model.addAttribute("totalRows", totalRows);
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("pageSize", pageSize);
 		return "search/list";
 	}
 	
