@@ -11,6 +11,9 @@ create table `user_detail`(
 	`mail` varchar(50)  default '',
 	`hope_salay` int(11) unsigned  default 0,
 	`tel` varchar(20)  default '',
+	`thumb` text default '',
+	`project_name` varchar(50) default '',
+	`project_desc` text default '',
 	`key_value` varchar(20) not null default '',
 	`create_time` int(11) not null default 0,
 	`update_time` int(11) not null default 0,
@@ -19,10 +22,10 @@ create table `user_detail`(
 	key(`key_value`),
 	key(`update_time`)
 )engine=myisam default charset=utf8 auto_increment=1;
-alter table `user_detail` add `thumb` text default '';
-alter table `user_detail` add `project_name` varchar(50) default '';
-alter table `user_detail` add `project_desc` text default '';
-alter table `user_detail` add `user_id` int(11) unsigned not null default 0;
+-- alter table `user_detail` add `thumb` text default '';
+-- alter table `user_detail` add `project_name` varchar(50) default '';
+-- alter table `user_detail` add `project_desc` text default '';
+-- alter table `user_detail` add `user_id` int(11) unsigned not null default 0;
 
 create table `user`(
 	`id` int(11) unsigned not null auto_increment,
@@ -31,10 +34,11 @@ create table `user`(
 	`create_time` int(11) not null default 0,
 	`update_time` int(11) not null default 0,
 	`statu` tinyint(1) not null default 1 comment'1 正常 ，0 无效',
-	primary key(`id`)
+	primary key(`id`),
+	key(`username`,`password`)
 )engine=myisam default charset=utf8 auto_increment=1;
-alter table `user` add index(`username`,`password`);
-alter table `user` drop `detail_id`;
+-- alter table `user` add index(`username`,`password`);
+-- alter table `user` drop `detail_id`;
 
 create table `admin`(
 	`id` int(11) unsigned not null auto_increment,
@@ -63,8 +67,8 @@ create table `company`(
 	primary key(`id`),
 	key(`username`,`password`)
 )engine=myisam default charset=utf8 auto_increment=1;
-alter table `company` add `desc` text default '';
-alter table `company` add `thumb` text default '';
+-- alter table `company` add `desc` text default '';
+-- alter table `company` add `thumb` text default '';
 
 create table `jobs`(
 	`id` int(11) unsigned not null auto_increment,
@@ -81,10 +85,11 @@ create table `jobs`(
 	key(`company_id`)
 )engine=myisam default charset=utf8 auto_increment=1;
 
-alter table `jobs` add `company_name` varchar(30) not null default '',
+-- alter table `jobs` add `company_name` varchar(30) not null default '',
 
 create table `user_job`(
 	`id` int(11) unsigned not null auto_increment,
+	`user_id` int(11) unsigned not null default 0,
 	`company_name` varchar(100) not null default '',
 	`user_name` varchar(30) unsigned not null ,
 	`job_name` varchar(30) unsigned not null ,
