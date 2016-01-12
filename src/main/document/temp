@@ -1,0 +1,14 @@
+ <!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+
+set character_set_client = utf8; 
+set character_set_connection = utf8 ;
+set character_set_database = utf8; 
+set character_set_filesystem = utf8; 
+set character_set_results = utf8; 
+set character_set_server = utf8; 
+set character_set_server = utf8; 

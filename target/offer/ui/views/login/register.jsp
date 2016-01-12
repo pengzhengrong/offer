@@ -7,41 +7,46 @@
 <script type="text/javascript" src="${rc.contextPath }/ui/index/js/jquery.min.js"></script>
 <script type="text/javascript">
 function dosubmit(){
-	$("#form1").attr("action","${rc.contextPath}/login/doRegister");
+	$("#form1").attr("action","${rc.contextPath}/register/doRegister");
  	$("#form1").submit();
 }
 
 function checkUserName( username ){
 	$.ajax({
-		url: '${rc.contextPath}/login/checkName"',
+		url: '${rc.contextPath}/register/checkName',
 		type: 'post',
 		data:{
 			"username":username
 		},
 		success: function (data){
-			if( data.data == 0 ){
-				$("#warn").html="此用户名已被使用!";
+			//alert(data);
+			if( data == 1 ){
+				$("#warn").html("此用户名已被使用!");
 			}
 		}
 	});
 }
 
 function doValid(){
-	if( $("#warn").val().trim() == '' ){
+	alert(1);
+	if( $("#warn").val().trim() != '' ){
+		alert("请重新输入用户名!");
 		return false;
 	}
 	if( $("input[name=username]").val().trim() =='' ){
+		alert("用户名不能为空!");
 		return false;
 	}
 	if( $("input[name=password]").val().trim() == '' ){
+		alert("密码不能为空!");
 		return false;
 	}
-	
+	return true;
 }
 
 </script>
 </head>
-<body style="text-align: center; " >
+<body>
 	<form   method="post" id="form1"  onsubmit="return doValid();">	
 	<table>
 		<tr>

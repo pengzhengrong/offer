@@ -4,6 +4,22 @@
 
 <web-app>
   <display-name>offer</display-name>
+   <!-- <context-param>
+    <param-name>contextConfigLocation</param-name>
+    	<param-value>
+			/WEB-INF/classes/applicationContext.xml
+		</param-value>
+  </context-param> 
+  <context-param>
+  	<param-name>context</param-name>
+  		<param-value>
+			/WEB-INF/classes/applicationContext_*.xml
+		</param-value>
+  </context-param> -->
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/log4j.xml</param-value>
+  </context-param>
   
  	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -25,8 +41,10 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>
+      		<param-value>
 				/WEB-INF/classes/app-config.xml
+				/WEB-INF/classes/applicationContext.xml
+				/WEB-INF/classes/applicationContext_*.xml
 			</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
@@ -90,20 +108,6 @@
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.ttf</url-pattern>
-	</servlet-mapping>
-	
-	 <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>
-			/WEB-INF/classes/applicationContext.xml
-			/WEB-INF/classes/applicationContext_*.xml
-		</param-value>
-  </context-param>
-  <context-param>
-    <param-name>log4jConfigLocation</param-name>
-    <param-value>/WEB-INF/classes/log4j.xml</param-value>
-  </context-param>
-	
-	
+	</servlet-mapping> 
 	
 </web-app>

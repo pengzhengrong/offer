@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- 如果登入路径为/，那么自动跳转view页面 -->
-	<mvc:view-controller path="/" view-name="/index/main" />
+	<mvc:view-controller path="/" view-name="/index" />
 
 	<!-- Configures the @Controller programming model -->
 	<!-- 会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 
@@ -43,16 +43,18 @@
 		<property name="exposeSpringMacroHelpers" value="true"/>
 		<property name="prefix" value="/views/" />
 		<property name="suffix" value=".jsp" />
-		<property name="order" value="0" />
+		<property name="order" value="1" />
 		<property name="requestContextAttribute" value="rc" />
 	</bean>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="contentType" value="text/html;charset=utf-8" />
 		<property name="cache" value="false" />
-		<property name="prefix" value="/views/" />
+		<property name="prefix" value="/ui/views/" />
 		<property name="suffix" value=".jsp" />
-		<property name="order" value="1" />
+		<property name="order" value="0" />
+		<property name="requestContextAttribute" value="rc" />
 	</bean>
 
 	<bean id="freemarkerConfig"
@@ -76,10 +78,23 @@
 		</property> -->
 		
 	</bean>
+	
+	<mvc:interceptors>
+		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+		<mvc:interceptor>
+			<!-- 对路径进行拦截 -->
+			<mvc:mapping path="/login/login" />
+			<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+			<bean class="utils.FilterUtils" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 设置上传文件大小的参数 ，当前为10M -->
 		<property name="maxUploadSize" value="10485760" />
 	</bean>
+	
+	
 
 </beans>

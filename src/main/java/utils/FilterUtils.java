@@ -1,5 +1,8 @@
 package utils;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,11 +29,24 @@ public class FilterUtils implements HandlerInterceptor{
 		// TODO Auto-generated method stub
 		String uri = req.getContextPath();
 		String url = req.getRequestURI();
-		
-		debugLog.debug("postHandler", "uri="+uri);
-		debugLog.debug("postHandler", "url="+url);
+		PrintWriter os = null;
+//		debugLog.debug("postHandler", "uri="+uri);//  /offer
+//		debugLog.debug("postHandler", "url="+url);//  /offer/login/login
 //		res.sendRedirect(uri+"/index/index");
-		req.getRequestDispatcher("/index/main").forward(req, res);
+//		req.getRequestDispatcher("/index").forward(req, res);
+		String js = "<script type=\"text/javascript\" src=\"../ui/static/js/jquery.min.js\"></script><script> $( function(){ 	window.opener.location.reload();window.close(); });</script>";
+		String json = cookieUtils.getCookie(req, res, "user");
+		GlobalUtil.setSession("username",
+				JSONObject.fromObject(json).get("username"), req);
+		try {
+			os = res.getWriter();
+			os.write(js);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			os.close();
+		}
 	}
 
 	@Override
@@ -43,7 +59,6 @@ public class FilterUtils implements HandlerInterceptor{
 		debugLog.debug("prehandler", "用户："+user);
 		if(user != null){
 			JSONObject json = JSONObject.fromObject(user);
-			
 			username = (String) json.get("username");
 			password = (String) json.get("password");
 		}

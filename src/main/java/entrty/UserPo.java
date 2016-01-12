@@ -6,9 +6,16 @@ public class UserPo {
 	private String userName;
 	private String password;
 	private int updateTime;
+	private int detailId;
 	
 	
 	
+	public int getDetailId() {
+		return detailId;
+	}
+	public void setDetailId(int detailId) {
+		this.detailId = detailId;
+	}
 	public int getId() {
 		return id;
 	}

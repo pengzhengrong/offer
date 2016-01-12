@@ -44,6 +44,10 @@ public class BaseDao extends JdbcDaoSupport implements IBaseDao{
 		 * end   = pageSize*page
 		 * totalPage = totalCount/pageSize
 		 */
+	
+	public BaseDao(){
+		super();
+	}
 
 	@Override
 	public <T> T queryForObject(String sql, Class<T> objClass) {
@@ -72,7 +76,7 @@ public class BaseDao extends JdbcDaoSupport implements IBaseDao{
 	@Override
 	public int queryForInt(String sql) {
 		try {
-			int i = ((IBaseDao) getJdbcTemplate()).queryForInt(sql);
+			int i =  getJdbcTemplate().queryForInt(sql);
 			return i;
 		} catch (Exception e) {
 			e.getMessage();

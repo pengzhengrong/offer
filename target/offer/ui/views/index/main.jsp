@@ -42,13 +42,19 @@ function logout(){
 	window.location.href="${rc.contextPath}/login/logout";  
 }
 
+function myInfo(){
+	window.location.href="${rc.contextPath}/person/list";  
+}
+
 $(function(){
 	if( username != '' ){
 		$('#loginbtn').hide();
 		$('#logoutbtn').show();
+		$('#myinfo').show();
 	}else{
 		$('#loginbtn').show();
 		$('#logoutbtn').hide();
+		$('#myinfo').hide();
 	}
 });
  
@@ -63,6 +69,8 @@ $(function(){
 
 				<label style="font-size: 15px;float: right;padding-right: 10px;color: #DDD;" onclick="loginWindow()" id="loginbtn">登入系统</label>
 				<label style="font-size: 15px;float: right;padding-right: 10px;color: #DDD;" onclick="logout()" id="logoutbtn">退出系统</label>
+				<label style="font-size: 15px;float: right;padding-right: 20px;color: #DDD;" onclick="myInfo()" id="myinfo">个人信息</label>
+				
 				<span>welcome ${username!}</span>
 			
 			<div class="controls">

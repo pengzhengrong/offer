@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
@@ -10,13 +9,18 @@
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<import resource="applicationContext.xml" />
 
+
+	<import resource="applicationContext.xml" />
+	<context:component-scan base-package="action" />
 	<!-- action -->
 	<bean id="loginAction" class="action.LoginAction" />
 	<!-- service -->
-	<bean id="userService"  class="service.impl.UserServiceImpl"     autowire="byName" />
-	
+	<bean id="userServiceImpl" class="service.impl.UserServiceImpl"
+		autowire="byName" />
+
 	<!-- dao -->
-	<bean  id="userDao" class="dao.impl.UserDaoImpl" autowire="byName" />
+	<bean id="userDao" class="dao.impl.UserDaoImpl" autowire="byName" />
+
+
 </beans>

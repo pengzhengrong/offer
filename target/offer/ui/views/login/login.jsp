@@ -12,7 +12,7 @@ function dosubmit(){
 }
 
 function regiseter(){
-	$("#form1").attr("action","${rc.contextPath}/login/register");
+	$("#form1").attr("action","${rc.contextPath}/register/register");
  	$("#form1").submit();
 }
 </script>

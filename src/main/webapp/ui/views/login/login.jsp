@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>登入页面</title>
-<link rel="stylesheet" type="style/css" href="${rc.contextPath }/ui/index/css/login.css">
-<script type="text/javascript" src="${rc.contextPath }/ui/index/js/jquery.min.js"></script>
+<link rel="stylesheet" type="style/css" href="${rc.contextPath }/ui/static/css/login.css">
+<script type="text/javascript" src="${rc.contextPath }/ui/static/js/jquery.min.js"></script>
 <script type="text/javascript">
 function dosubmit(){
 	$("#form1").attr("action","${rc.contextPath}/login/dologin");
@@ -12,7 +14,7 @@ function dosubmit(){
 }
 
 function regiseter(){
-	$("#form1").attr("action","${rc.contextPath}/login/register");
+	$("#form1").attr("action","${rc.contextPath}/register/register");
  	$("#form1").submit();
 }
 </script>
