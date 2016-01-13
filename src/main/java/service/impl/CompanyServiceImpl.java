@@ -2,6 +2,7 @@ package service.impl;
 
 import java.sql.Types;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import loggerUtils.DbLog;
@@ -21,6 +22,7 @@ import utils.BaseDao;
 @Service
 public class CompanyServiceImpl extends BaseDao implements CompanyService {
 
+	private int totalRows;
 	
 	@Autowired
 	private GlobalDao globalDao;
@@ -82,8 +84,7 @@ public class CompanyServiceImpl extends BaseDao implements CompanyService {
 		String sql = " select id from `company` where `username`='"+userName+"'";
 		return this.queryForInt(sql);
 	}
-	
-	
+
 	
 	
 

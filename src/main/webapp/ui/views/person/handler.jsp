@@ -12,66 +12,55 @@
 <script type="text/javascript" src="${rc.contextPath}/ui/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="${rc.contextPath}/ui/static/js/jquery.plugins.min.js"></script>
 <script type="text/javascript">
-	function handler(id,key){
+	function handler(id){
 		$.post(
-			"${rc.contextPath}/job/operater",
+			"${rc.contextPath}/userjob/delete",
 			{
-				"id":id,
-				"key":key
+				"id":id
 			},
 			function(data){
-				if( data == 0){
-					alert("操作失败!");
+				if( data == 1){
+					alert("删除成功!");
+					window.location.reload();
 					return;
 				}
-				alert("操作成功!");
+				alert("删除失败!");
 			}
 		);
 	}	
 	
-	function userDetail(userId){
-		window.location.href="${rc.contextPath}/job/person?userId="+userId;
-	}
 </script>
 </head>
 <body>
 	<!-- <#include "views/index/companyHead.jsp" > -->
-	<jsp:include page="/ui/views/index/companyHead.jsp" />
+	<jsp:include page="/ui/views/index/head.jsp" />
 	<div class="_position">
-		<span>当前位置：申请处理</span>
-	</div>
-	<form id="searchForm" method="post">
-		<input type="hidden" value="${statu }" name="statu" >
-	</form>
-	<div>
-		<span onclick="jobHandler('1');" style="float:right;padding-right:10px">申请成功</span>
-		<span onclick="jobHandler('-1');" style="float:right;padding-right:10px">申请失败</span>
+		<span>当前位置：我的申请</span>
 	</div>
 <div  class="easyTable">
 	<table>
 	<th>序号</th>
-	<th>申请人</th>
+	<th>公司</th>
 	<th>职位</th>
 	<th>状态</th>
 	<th>操作</th>
 	<c:forEach var="po" items="${poList }" varStatus="status">
 		<tr>
 		<td>${status.index + 1} </td>
-		<%-- <td>${po.id}</td> --%>
-		<td><a href="javascript:" onclick="userDetail('${po.userId}');">${po.userName}</a></td>
+		<td>${po.companyName}</td>
 		<td>${po.jobName }</td>
 		<td>
 			<c:if test="${po.statu==0 }">未处理</c:if>	
 			<c:if test="${po.statu==1 }">接受</c:if>	
 			<c:if test="${po.statu==-1 }">拒绝</c:if>	
 		</td>
-		<td><a href="javascript:" onclick="handler('${po.id}',1);">接受申请</a>|<a href="javascript:" onclick="handler('${po.id}',-1);">遗憾错过</a></td>
+		<td><a href="javascript:" onclick="handler('${po.id}');">删除</a></td>
 	</tr>
 	</c:forEach>
 	</table>
 </div>
 <div>
-<p:Page dataSourceUrl="${rc.contextPath}/job/handler" form="searchForm" pageSize="${pageSize }" totalRows="${totalRows}" nowPage="${nowPage }" />
+<p:Page dataSourceUrl="${rc.contextPath}/userjob/list" pageSize="${pageSize }" totalRows="${totalRows}" nowPage="${nowPage }" />
 </div>
 	<!-- last div can't delete -->
 	</div>

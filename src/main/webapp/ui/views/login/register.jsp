@@ -30,7 +30,6 @@ function checkUserName( username ){
 }
 
 function doValid(){
-	alert(1);
 	if( $("#warn").val().trim() != '' ){
 		alert("请重新输入用户名!");
 		return false;

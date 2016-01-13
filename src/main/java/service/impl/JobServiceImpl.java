@@ -4,6 +4,9 @@ import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import dao.GlobalDao;
 import loggerUtils.DbLog;
 import entrty.JobPo;
 import service.JobService;
@@ -11,6 +14,11 @@ import utils.BaseDao;
 
 public class JobServiceImpl extends BaseDao implements JobService {
 
+	private int totalRows;
+	
+	@Autowired
+	private GlobalDao globalDao;
+	
 	@Override
 	public JobPo getJob(int id) {
 		// TODO Auto-generated method stub
@@ -60,24 +68,15 @@ public class JobServiceImpl extends BaseDao implements JobService {
 		return this.queryForList(sql, JobPo.class);
 	}
 	
-	
-	public int getMaxRows(int companyId ){
-		String sql = "select count(1) from `jobs` where `company_id`="+companyId;
-		return this.queryForInt(sql);
-	}
-
 	@Override
 	public List<JobPo> queryByPage(String sql, int nowPage, int pageSize) {
 		// TODO Auto-generated method stub
-		int offset = (nowPage-1)*pageSize;
-		sql += " limit "+offset+","+pageSize;
-		DbLog.updateSuccess(sql);
-		return this.queryForList(sql, JobPo.class);
+		totalRows = globalDao.getMaxRows(sql);
+		return globalDao.queryByPage(sql, nowPage, pageSize, JobPo.class);
 	}
 	
-	public int getMaxRows(String sql ){
-		sql = "select count(1) from ("+sql+") Z" ;
-		return this.queryForInt(sql);
+	public int getMaxRows(){
+		return totalRows;
 	}
 
 }

@@ -8,7 +8,7 @@
 <link type="text/css" rel="stylesheet" href="${rc.contextPath}/ui/static/css/global.css" />
 </head>
 <body>
-	<#include "views/index/head.jsp" >
+	<jsp:include page="/ui/views/index/head.jsp" />
 	<div class="_position" style="padding-right: 10px;"	>
 		<span>当前位置：填写个人信息</span>
 	</div>
@@ -33,10 +33,10 @@
 	</table>
 	</form>
 	<div class="_center">
-		<input form="personForm" name="project_name" placeholder="项目名称" value="" ><br><br>
-		<textarea style="width: 400px;" form="perosonForm" rows="10" cols="10" placeholder="请描述您的项目" ></textarea>
+		<input form="personForm" name="projectName" placeholder="项目名称" value="${po.projectName}" ><br><br>
+		<textarea style="width: 500px;" name="projectDesc" form="personForm" rows="10" cols="10" placeholder="请描述您的项目" >${po.projectDesc}</textarea>
 		<br><br>
-		<input type="hidden" form="personForm" name="thumb" value="" >
+		<input type="hidden" form="personForm" name="thumb" value="${po.thumb }" >
 		<form  id="thumbForm"  enctype="multipart/form-data">
 			<input type="file" name="filename" multiple="multiple" /> 
 			<input id="upload" type="button" onclick="doUpload()" value="开始上传" />

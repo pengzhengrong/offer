@@ -36,10 +36,12 @@ $(function(){
 		$('#loginbtn').hide();
 		$('#logoutbtn').show();
 		$('#myinfo').show();
+		$('#myHandler').show();
 	}else{
 		$('#loginbtn').show();
 		$('#logoutbtn').hide();
 		$('#myinfo').hide();
+		$('#myHandler').hide();
 	}
 });
 
@@ -52,6 +54,13 @@ function resetKey(){
 //	$('#value').val('');
 var key =	document.getElementById("key");
 var value = document.getElementById("value");
-key.value = "";
-value.value="";
+alert(key.value+" "+value.value);
+$('#key').val('');
 }
+
+function myHandler(){
+	window.location.href=_path+"/userjob/list";
+}
+
+
+

@@ -14,4 +14,6 @@ public interface UserJobService {
 	
 	public int getMaxRows(String sql);
 	
+	public int delete(int id);
+	
 }

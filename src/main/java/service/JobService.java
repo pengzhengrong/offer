@@ -18,10 +18,8 @@ public interface JobService {
 	
 	public List<JobPo> queryByPage(int companyId , int nowPage , int pageSize);
 	
-	public int getMaxRows( int companyId );
-	
-	public int getMaxRows( String sql );
-	
 	public List<JobPo> queryByPage( String sql , int nowPage , int pageSize);
+	
+	public int getMaxRows();
 	
 }

@@ -36,12 +36,6 @@ public class JobAction {
 	@Autowired
 	private JobService jobService;
 	
-	@Autowired
-	private UserJobService userJobService;
-	
-	@Autowired
-	private UserDetailService userDetailService;
-	
 	@RequestMapping("job/list")
 	public String pubJob(ModelMap model,HttpServletRequest request, HttpServletResponse response ){
 		int companyId = (int) GlobalUtil.getSession("companyId", request);
@@ -63,7 +57,6 @@ public class JobAction {
 		}
 		
 		debugLog.debug("job/list", "sql="+sql);
-		int totalRows = jobService.getMaxRows(sql);
 		
 		if( nowpage != null){
 			nowPage = Integer.parseInt( nowpage );
@@ -71,6 +64,8 @@ public class JobAction {
 		}
 		
 		List<JobPo> poList = jobService.queryByPage(sql, nowPage, pageSize);
+		int totalRows = jobService.getMaxRows();
+		
 		model.addAttribute("poList", poList);
 		model.addAttribute("totalRows", totalRows);
 		model.addAttribute("nowPage", nowPage);
@@ -129,65 +124,28 @@ public class JobAction {
 		}
 	}
 	
+	//--------------------------------------//
 	
-	@ResponseBody
-	@RequestMapping("job/resume")
-	public int resume(String companyName ,String jobName ,ModelMap model,HttpServletRequest request, HttpServletResponse response){
-		String userName = (String) GlobalUtil.getSession("userName", request);
-		if( userName == null ){
-			return 0;
-		}
-		int userId = (int) GlobalUtil.getSession("userId", request);
-		debugLog.debug("job/resume", userName+" "+companyName+" "+jobName);
-		int res = userJobService.save(userId,userName, companyName, jobName);
-		return res;
-	}
-	
-	@RequestMapping("job/handler")
-	public String handler(int statu,ModelMap model,HttpServletRequest request, HttpServletResponse response){
-		debugLog.debug("job/handler", "");
-		if( GlobalUtil.getUserName(request) == null){
-			debugLog.debug("job/handler", "usreName=null");
-			return "";
-		}
+	@RequestMapping("job/joblist")
+	public String joblist(String name ,ModelMap model,HttpServletRequest request, HttpServletResponse response){
+		
 		int nowPage = 1;
 		int pageSize = 2;
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
-		String companyName = (String) GlobalUtil.getSession("companyName", request);
-		String sql = "select * from `user_job` where `statu`="+statu+" and `company_name`='"+companyName+"'";
-		int totalRows = userJobService.getMaxRows(sql);
+		String sql = "select * from `jobs` where `statu`=1 and `company_name`='"+name+"'";
+		int totalRows = jobService.getMaxRows();
 		if( nowpage != null){
 			nowPage = Integer.parseInt( nowpage );
 			pageSize = Integer.parseInt( pagesize );
 		}
-		List<UserJobPo> poList = userJobService.queryByPage(sql, nowPage, pageSize);
+		List<JobPo> poList = jobService.queryByPage(sql, nowPage, pageSize);
 		model.addAttribute("poList", poList );
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("totalRows", totalRows);
-		model.addAttribute("statu", statu);
-		return "job/handler";
-		
-	}
-	
-	@ResponseBody
-	@RequestMapping("job/operater")
-	public int changeStatu(int id,int key,ModelMap model,HttpServletRequest request, HttpServletResponse response){
-		int res = 0;
-		if( key == 1 ){
-			res = userJobService.update(id,1);
-		}else{
-			res = userJobService.update(id, -1);
-		}
-		return res;
-	}
-	
-	@RequestMapping("job/person")
-	public String personDetail(int userId ,ModelMap model,HttpServletRequest request, HttpServletResponse response){
-		UserDetailPo po = userDetailService.getUserDetail(userId);
-		model.addAttribute("po", po);
-		return "job/person";
+		model.addAttribute("name", name);
+		return "job/joblist";
 	}
 	
 }

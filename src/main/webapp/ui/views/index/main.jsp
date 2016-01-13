@@ -25,7 +25,8 @@ var _path = '${rc.contextPath}';
 			<h1 onclick="mainToIndex();" id="main_">来我招聘</h1>
 				<label style="font-size: 15px;float: right;padding-right: 10px;color: #DDD;" onclick="loginWindow()" id="loginbtn">登入系统</label>
 				<label style="font-size: 15px;float: right;padding-right: 10px;color: #DDD;" onclick="logout()" id="logoutbtn">退出系统</label>
-				<label style="font-size: 15px;float: right;padding-right: 20px;color: #DDD;" onclick="myInfo()" id="myinfo">个人信息</label>
+				<label style="font-size: 15px;float: right;padding-right: 15px;color: #DDD;" onclick="myInfo()" id="myinfo">个人信息</label>
+				<label style="font-size: 15px;float: right;padding-right: 20px;color: #DDD;" onclick="myHandler()" id="myHandler">我的申请</label>
 				<span>welcome ${username}</span>
 			
 			<div class="controls">

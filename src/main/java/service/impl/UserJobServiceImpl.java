@@ -45,6 +45,13 @@ public class UserJobServiceImpl extends BaseDao implements UserJobService{
 	public int getMaxRows(String sql){
 		return globalDao.getMaxRows(sql);
 	}
+
+	@Override
+	public int delete(int id) {
+		// TODO Auto-generated method stub
+		String sql = "delete from `user_job` where `id`="+id;
+		return this.update(sql);
+	}
 	
 	
 	

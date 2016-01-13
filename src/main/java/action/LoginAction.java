@@ -74,8 +74,10 @@ public class LoginAction {
 		if (islogin) {
 			int userId = userServiceImpl.getId(username);
 			UserDetailPo po = userDetailService.getUserDetail(userId);
-			GlobalUtil.setSession("userName", po.getName(), request);
-			GlobalUtil.setSession("userId", userId, request);
+			if(po != null ){
+				GlobalUtil.setSession("userName", po.getName(), request);
+				GlobalUtil.setSession("userId", userId, request);
+			}
 		}
 
 		try {

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import entrty.CompanyPo;
 import entrty.JobPo;
+import entrty.UserJobPo;
 import utils.GlobalUtil;
 import utils.cookieUtils;
 
@@ -129,5 +130,6 @@ public class CompanyAction {
 			e.printStackTrace();
 		}
 	}
+	
 	
 }

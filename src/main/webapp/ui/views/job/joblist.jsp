@@ -34,8 +34,8 @@ function resume(companyName,jobName){
 		);
 }
 
-function companyInfo(name){
-	window.location.href="${rc.contextPath}/job/joblist?name="+name;
+function companyInfo(){
+	
 }
 
 </script>
@@ -63,32 +63,12 @@ function companyInfo(name){
 					<option label="薪资" value="薪资" />
 					<option label="地点" value="地点" />
 				</datalist>
-				<!-- <input type="reset" onclick="resetKey();" value="重置"> --><input type="submit" value="搜索">
+				<input type="hidden" value="${name }" name="name">
+				<input type="submit" value="搜索">
 			</form>
 		</div>
 	<hr>
 	<div class="easyTable">
-		<c:if test="${type == 'company'}">
-		<div class="_position" style="padding-right: 10px;"	>
-			<span>当前位置：公司信息</span>
-		</div>
-		<table>
-		<th>公司名称</th>
-		<th>地址</th>
-		<th>联系方式</th>
-		<th>操作</th>
-		<c:forEach var="po" items="${poList}">
-		<tr>
-			<td>${po.companyName }</td>
-			<td>${po.address }</td>
-			<td>${po.tel }</td>
-			<td><a href="javascript:" onclick="companyInfo('${po.companyName}')">职位发布</a></td>
-		</tr>
-		</c:forEach>
-		</table>
-	</c:if>
-	
-	<c:if test="${type=='job' }">
 	<div class="_position" style="padding-right: 10px;"	>
 		<span>当前位置：职位信息</span>
 	</div>
@@ -104,10 +84,9 @@ function companyInfo(name){
 		</tr>
 	</c:forEach>
 	</table>
-	</c:if>
 	</div>
 	<div>
-		<p:Page nowPage="${nowPage}" totalRows="${totalRows }" pageSize="${pageSize}" form="searchFormHead" dataSourceUrl="${rc.contextPath }/search/list"/>
+		<p:Page nowPage="${nowPage}" totalRows="${totalRows }" pageSize="${pageSize}" form="searchFormHead" dataSourceUrl="${rc.contextPath }/job/joblist"/>
 	</div>
 	
 </div>
