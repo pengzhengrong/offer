@@ -62,5 +62,25 @@ function myHandler(){
 	window.location.href=_path+"/userjob/list";
 }
 
+function doUpload(){
+	alert(1);
+	var form1 = $('#thumbForm');
+	form1.action=_path+"/person/upload";
+	form1.submit();
+	
+}
 
+function doSubmit(){
+	var filename = $("input[name=filename]").val();
+	$.ajax({
+		url:_path+"/person/upload",
+		type:"post",
+		data:{
+			filename:filename
+		},
+		success:function(data){
+			alert(data);
+		}
+	})
+}
 

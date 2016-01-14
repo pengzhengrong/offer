@@ -24,11 +24,11 @@ function regiseter(){
 	<table>
 		<tr>
 			<td><label>姓名：</label></td>
-			<td> <input name="username" value="pzr" placeholder="请输入姓名" ></td>
+			<td> <input name="username" value="" placeholder="请输入姓名" ></td>
 		</tr>
 		<tr>
 			<td><label>密码：</label></td>
-			<td>  <input type="password" name="password" placeholder="请输入密码" value="pzr"></td>
+			<td>  <input type="password" name="password" placeholder="请输入密码" value=""></td>
 		</tr>
 		<tr>
 			<td><input type="checkbox" name="cookie" value="true">自动登入</td>

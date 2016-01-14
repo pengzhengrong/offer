@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.UserDetailService;
 import service.UserJobService;
 import utils.GlobalUtil;
+import entrty.PageInfo;
 import entrty.UserDetailPo;
 import entrty.UserJobPo;
 
@@ -48,8 +49,8 @@ public class UserJobAction {
 			debugLog.debug("job/handler", "usreName=null");
 			return "index/main";
 		}
-		int nowPage = 1;
-		int pageSize = 2;
+		int nowPage = PageInfo.getNowPage();
+		int pageSize = PageInfo.getPageSize();
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
 		String companyName = (String) GlobalUtil.getSession("companyName", request);
@@ -89,16 +90,16 @@ public class UserJobAction {
 	}
 	
 	@RequestMapping("userjob/list")
-	public String handler(ModelMap model, HttpServletRequest request,
+	public String personHandler(ModelMap model, HttpServletRequest request,
 			HttpServletResponse response){
-		String userName = (String) GlobalUtil.getSession("userName", request);
+		Object userName = GlobalUtil.getSession("userName", request);
 		debugLog.debug("person/handler", "userName="+userName);
-		if( userName == null){
+	/*	if( (int)userName == -1){
 			debugLog.debug("person/handler", "usreName=null");
-			return "index/main";
-		}
-		int nowPage = 1;
-		int pageSize = 2;
+//			return "index/main";
+		}*/
+		int nowPage = PageInfo.getNowPage();
+		int pageSize = PageInfo.getPageSize();
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
 		String sql = "select * from `user_job` where `user_name`='"+userName+"'";

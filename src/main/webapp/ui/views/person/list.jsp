@@ -81,12 +81,14 @@
 		<textarea style="width: 500px;" name="projectDesc" form="personForm" rows="10" cols="10" placeholder="请描述您的项目" >${po.projectDesc}</textarea>
 		<br><br>
 		<input type="hidden" form="personForm" name="thumb" value="${po.thumb }" >
-		<form  id="thumbForm"  enctype="multipart/form-data">
+		<form  id="thumbForm" action="/offer/person/upload"  enctype="multipart/form-data">
 			<input type="file" name="filename" multiple="multiple" /> 
-			<input id="upload" type="button" onclick="doUpload()" value="开始上传" />
+			<input id="upload" type="submit"  value="开始上传" /> <!-- onclick="doSubmit()" -->
 		</form>
 		<br>
-		<img alt="" src="${rc.contextPath}/ui/static/images/default.png">
+		
+		<c:if test="${po.thumb != null }"><img alt="" src="${rc.contextPath}/ui/static/images/default.png"></c:if>
+		<c:if test="${po.thumb == null }"><img alt="" src="${rc.contextPath}/ui/static/images/default.png"></c:if>
 	</div>
 	
 	<!-- last div can't delete -->

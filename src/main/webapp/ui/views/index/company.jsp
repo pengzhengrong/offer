@@ -26,9 +26,10 @@ var _path = '${rc.contextPath}';
 
 				<label style="font-size: 15px;float: right;padding-right: 10px;color: #DDD;" onclick="loginWindow()" id="loginbtn">登入系统</label>
 				<label style="font-size: 15px;float: right;padding-right: 10px;color: #DDD;" onclick="logout()" id="logoutbtn">退出系统</label>
+				<label style="font-size: 15px;float: right;padding-right: 15px;color: #DDD;" onclick="changePwd()" id="changePwd">修改密码</label>
 				<label style="font-size: 15px;float: right;padding-right: 20px;color: #DDD;" onclick="myInfo()" id="myinfo">个人信息</label>
 				<label style="font-size: 15px;float: right;padding-right: 30px;color: #DDD;" onclick="joblist()" id="pubjob">发布工作</label>
-				<label style="font-size: 15px;float: right;padding-right: 30px;color: #DDD;" onclick="jobHandler('0')" id="jobHandler">处理申请</label>
+				<label style="font-size: 15px;float: right;padding-right: 35px;color: #DDD;" onclick="jobHandler('0')" id="jobHandler">处理申请</label>
 				
 				<span>welcome ${username}</span>
 			

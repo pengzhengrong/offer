@@ -65,9 +65,10 @@ public class CompanyServiceImpl extends BaseDao implements CompanyService {
 	}
 
 	@Override
-	public int changePwd(String newPwd,  int companyId) {
+	public int changePwd(String newPwd ,String oldPwd,  int companyId) {
 		// TODO Auto-generated method stub
-		String sql = "update `company` set `password`='"+newPwd+"' where `id`="+companyId;
+		String sql = "update `company` set `password`='"+newPwd+"' where `password`='"+oldPwd+"' and `id`="+companyId ;
+		DbLog.querySuccess(sql);
 		return this.update(sql);
 	}
 

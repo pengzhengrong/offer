@@ -17,6 +17,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import entrty.CompanyPo;
+import entrty.PageInfo;
 import entrty.UserDetailPo;
 import utils.GlobalUtil;
 
@@ -83,8 +84,8 @@ public class AdminAction {
 			return "admin/index";
 		}
 		String sql = "select * from `company`";
-		int nowPage = 1;
-		int pageSize = 2;
+		int nowPage = PageInfo.getNowPage();
+		int pageSize = PageInfo.getPageSize();
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
 		if( nowpage != null){
@@ -147,8 +148,8 @@ public class AdminAction {
 			return "admin/index";
 		}
 		String sql = "select * from `user_detail`";
-		int nowPage = 1;
-		int pageSize = 2;
+		int nowPage = PageInfo.getNowPage();
+		int pageSize = PageInfo.getPageSize();
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
 		int totalRows = adminService.getMaxRows(sql);

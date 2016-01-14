@@ -30,9 +30,9 @@ public class JobServiceImpl extends BaseDao implements JobService {
 	public int save(JobPo po , int companyId, String companyName) {
 		// TODO Auto-generated method stub
 		int now = (int) new Date().getTime();
-		String sql = "insert into `jobs`(`company_id`,`company_name`,`name`,`desc`,`address`,`salay`,`create_time`,`update_time`) values(?,?,?,?,?,?,?)";
+		String sql = "insert into `jobs`(`company_id`,`company_name`,`name`,`desc`,`address`,`salay`,`create_time`,`update_time`) values(?,?,?,?,?,?,?,?)";
 		int[] argTypes = {Types.INTEGER,Types.VARCHAR,Types.VARCHAR,Types.LONGVARCHAR,Types.VARCHAR,Types.VARCHAR,Types.INTEGER,Types.INTEGER};
-		Object[] args = {companyId ,po.getCompanyName(), po.getName(),po.getDesc(),po.getAddress(),po.getSalay(),now ,now };
+		Object[] args = {companyId ,companyName, po.getName(),po.getDesc(),po.getAddress(),po.getSalay(),now ,now };
 		return this.update(sql, args, argTypes);
 	}
 

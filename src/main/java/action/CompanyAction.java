@@ -32,7 +32,7 @@ public class CompanyAction {
 
 	@Autowired
 	private CompanyService companyService;
-	
+
 	@RequestMapping("company/index")
 	public String index() {
 		debugLog.debug("company/index", "index/main");
@@ -58,34 +58,30 @@ public class CompanyAction {
 		int islogin = 0;
 		debugLog.debug("company", "dologin");
 		String js = "<script type=\"text/javascript\" src=\"../ui/static/js/jquery.min.js\"></script><script> $( function(){ 	window.opener.location.reload();window.close(); });</script>";
-		String json = cookieUtils.getCookie(request, response, "user");
-		if (json != null) {
-			debugLog.debug("dologinSuccess", "cookie登入成功");
-			islogin = 1;
-			GlobalUtil.setSession("username",
-					JSONObject.fromObject(json).get("username"), request);
+		// 如果用户登入成功，那么记录用户的session
+		islogin = companyService.checkUser(username, password);
+		if (islogin > 0) {
+			GlobalUtil.setSession("username", username, request);
 		} else {
-			// 如果用户登入成功，那么记录用户的session
-			islogin = companyService.checkUser(username, password);
-			if (islogin > 0) {
-				GlobalUtil.setSession("username", username, request);
-			}else{
-				js = "<script>alert(\"登入失败，请重新登入!\");window.location.href=\"/offer/company/login\";</script>";
-				debugLog.debug("company/dologin", "js="+js);
-			}
+			js = "<script>alert(\"登入失败，请重新登入!\");window.location.href=\"/offer/company/login\";</script>";
+			debugLog.debug("company/dologin", "js=" + js);
 		}
-		if( islogin > 0){
+		if (islogin > 0) {
 			int companyId = (int) GlobalUtil.getSession("companyId", request);
-			
-			if( companyId == -1 || companyId == 0){
+
+			if (companyId == -1 || companyId == 0) {
 				CompanyPo po = companyService.getCompany(username);
-				if( po != null ){
+				if (po != null) {
 					GlobalUtil.setSession("companyId", po.getId(), request);
-					GlobalUtil.setSession("companyName", po.getCompanyName(), request);
+					GlobalUtil.setSession("companyName", po.getCompanyName(),
+							request);
+					debugLog.debug("company/dologin",
+							"set companyId=" + po.getId() + " companyName="
+									+ po.getCompanyName());
 				}
 			}
 		}
-		
+
 		try {
 			response.setContentType("text/html; charset=utf-8");
 			os = response.getWriter();
@@ -102,10 +98,9 @@ public class CompanyAction {
 	@RequestMapping("company/logout")
 	public void doLogout(String username, String password, ModelMap model,
 			HttpServletRequest request, HttpServletResponse response) {
-		String[] args = {"username","companyId"};
+		String[] args = { "username", "companyId", "companyName" };
 		GlobalUtil.removeAll(args, request);
-		debugLog.debug("dologout",
-				"登出");
+		debugLog.debug("dologout", "登出");
 		try {
 			response.sendRedirect("index");
 		} catch (IOException e) {
@@ -113,17 +108,19 @@ public class CompanyAction {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@RequestMapping("company/list")
-	public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response){
+	public String list(ModelMap model, HttpServletRequest request,
+			HttpServletResponse response) {
 		String userName = GlobalUtil.getUserName(request);
 		CompanyPo po = companyService.getCompany(userName);
 		model.addAttribute("po", po);
 		return "company/list";
 	}
-	
+
 	@RequestMapping("company/update")
-	public void update(CompanyPo po ,ModelMap model,HttpServletRequest request, HttpServletResponse response){
+	public void update(CompanyPo po, ModelMap model,
+			HttpServletRequest request, HttpServletResponse response) {
 		int res = companyService.update(po);
 		try {
 			response.sendRedirect("list");
@@ -132,6 +129,29 @@ public class CompanyAction {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+	@RequestMapping("company/changePwd")
+	public String pwd(String newPwd, CompanyPo po, ModelMap model,
+			HttpServletRequest request, HttpServletResponse response) {
+		return "company/pwd";
+	}
+
+	@RequestMapping("company/updatePwd")
+	public void changePwd(String newPwd, String oldPwd, CompanyPo po,
+			ModelMap model, HttpServletRequest request,
+			HttpServletResponse response) {
+		String path = "/offer/company/index";
+		int companyId = (int) GlobalUtil.getSession("companyId", request);
+		if (newPwd.trim() == oldPwd.trim()) {
+			path = "/offer/company/changePwd";
+		}
+		int res = companyService.changePwd(newPwd, oldPwd, companyId);
+		try {
+			response.sendRedirect(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

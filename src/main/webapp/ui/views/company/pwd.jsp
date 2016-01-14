@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${rc.contextPath }/ui/static/js/jquery.min.js"></script>
 <script type="text/javascript">
 function dosubmit(){
-	$("#form1").attr("action","${rc.contextPath}/company/dologin");
+	$("#form1").attr("action","${rc.contextPath}/company/updatePwd");
  	$("#form1").submit();
 }
 
@@ -19,15 +19,16 @@ function dosubmit(){
 	<form   method="post" id="form1" >	
 	<table>
 		<tr>
-			<td><label>姓名：</label></td>
-			<td> <input name="username" value="" placeholder="请输入姓名" ></td>
+			<td><label>旧密码：</label></td>
+			<td>  <input type="password" name="oldPwd" placeholder="请输入旧密码" value=""></td>
 		</tr>
 		<tr>
-			<td><label>密码：</label></td>
-			<td>  <input type="password" name="password" placeholder="请输入密码" value=""></td>
+			<td><label>新密码：</label></td>
+			<td>  <input type="password" name="newPwd" placeholder="请输入新密码" value=""></td>
 		</tr>
 		<tr>
-			<td><input type="reset" value="重置">	<input type="button"  onclick="dosubmit()" value="公司登入"></td>
+			<td><input type="reset" value="重置">	
+			<input type="button"  onclick="dosubmit()" value="确认"></td>
 		</tr>
 	</table>
 	</form>

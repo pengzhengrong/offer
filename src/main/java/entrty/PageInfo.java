@@ -2,71 +2,75 @@ package entrty;
 
 public class PageInfo {
 
-	private int page;
+	private static int nowPage = 1;
 	
-	private int pageSize;
+	private static int pageSize = 5;
 	
-	private int totalCount;
+	private int totalRows;
 	
 	private int totalPage;
 	
-	private int start;
+	private int offset;
 	
-	private int end;
 	
 	public PageInfo(int page,int pageSize){
-		this.start = (page-1)*pageSize ;
+		this.offset = (page-1)*pageSize ;
 		this.pageSize = pageSize;
 	}
-	
 
-	public int getPage() {
-		return page;
+
+	public static int getNowPage() {
+		return nowPage;
 	}
 
-	public void setPage(int page) {
-		this.page = page;
+
+
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
 	}
 
-	public int getPageSize() {
+	public static int getPageSize() {
 		return pageSize;
 	}
+
 
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 
-	public int getTotalCount() {
-		return totalCount;
+
+	public int getTotalRows() {
+		return totalRows;
 	}
 
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
+
+	public void setTotalRows(int totalRows) {
+		this.totalRows = totalRows;
 	}
+
 
 	public int getTotalPage() {
 		return totalPage;
 	}
 
+
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
 	}
 
-	public int getStart() {
-		return start;
+
+	public int getOffset() {
+		return offset;
 	}
 
-	public void setStart(int start) {
-		this.start = start;
-	}
 
-	public int getEnd() {
-		return end;
+	public void setOffset(int offset) {
+		this.offset = offset;
 	}
+	
+	
+	
 
-	public void setEnd(int end) {
-		this.end = end;
-	}
 	
 	
 	

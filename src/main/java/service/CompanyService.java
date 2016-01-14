@@ -15,7 +15,7 @@ public interface CompanyService {
 	
 	public int update(CompanyPo po);
 	
-	public int changePwd( String newPwd , int companyId);
+	public int changePwd( String newPwd ,String oldPwd, int companyId);
 	
 	public CompanyPo getCompany( String userName);
 	

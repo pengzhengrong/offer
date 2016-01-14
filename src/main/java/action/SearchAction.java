@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import entrty.CompanyPo;
 import entrty.JobPo;
+import entrty.PageInfo;
 import service.SearchService;
 import utils.GlobalUtil;
 
@@ -32,8 +33,8 @@ public class SearchAction {
 		if( map == null ){
 			debugLog.debug("search/list", "map is null");
 		}
-		int nowPage = 1;
-		int pageSize = 2;
+		int nowPage = PageInfo.getNowPage();
+		int pageSize = PageInfo.getPageSize();
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
 		if( nowpage != null){

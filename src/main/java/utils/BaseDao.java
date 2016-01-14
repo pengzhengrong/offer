@@ -131,8 +131,8 @@ public class BaseDao extends JdbcDaoSupport implements IBaseDao{
 	@Override
 	public <T> List<T> queryByPage(String sql, PageInfo page,Class<T> objClass) {
 		int totalCount = getMaxRows(sql);
-		page.setTotalCount(totalCount);
-		sql = sql+" limit "+page.getStart()+","+page.getPageSize();
+		page.setTotalRows(totalCount);
+		sql = sql+" limit "+page.getOffset()+","+page.getPageSize();
 		List<T> list = queryForList(sql, objClass);
 		return list;
 	}

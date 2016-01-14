@@ -48,7 +48,7 @@ public class RegisterAction {
 				if( isok ){
 					sb.append("<script>alert(\"恭喜，注册成功!\");window.close();</script>");
 				}else{
-					sb.append("<script>alert(\"对不起，注册失败!\");window.location.href=\"/${rc.contextPath}/login/register\";</script>");
+					sb.append("<script>alert(\"对不起，注册失败!\");window.location.href=\"/offer/register/register\";</script>");
 				}
 				write.write(sb.toString());
 			} catch (IOException e) {

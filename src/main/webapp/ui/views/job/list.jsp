@@ -29,7 +29,7 @@
 			<option label="名称" value="name" />
 			<option label="薪资" value="salay" />
 		</datalist>
-		<input type="reset" value="清空"><input type="submit" value="搜索">
+		<input type="submit" value="搜索">
 	</form>
 	</div>
 <div  class="easyTable">

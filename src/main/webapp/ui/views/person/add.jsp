@@ -33,10 +33,10 @@
 	</table>
 	</form>
 	<div class="_center">
-		<input form="personForm" name="projectName" placeholder="项目名称" value="${po.projectName}" ><br><br>
+		<input form="personForm" name="projectName" placeholder="项目名称" value="" ><br><br>
 		<textarea style="width: 500px;" name="projectDesc" form="personForm" rows="10" cols="10" placeholder="请描述您的项目" >${po.projectDesc}</textarea>
 		<br><br>
-		<input type="hidden" form="personForm" name="thumb" value="${po.thumb }" >
+		<input type="hidden" form="personForm" name="thumb" value="" >
 		<form  id="thumbForm"  enctype="multipart/form-data">
 			<input type="file" name="filename" multiple="multiple" /> 
 			<input id="upload" type="button" onclick="doUpload()" value="开始上传" />

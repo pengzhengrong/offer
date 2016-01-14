@@ -40,14 +40,16 @@ $(function(){
 		$('#loginbtn').hide();
 		$('#logoutbtn').show();
 		$('#myinfo').show();
-		$('#jobPub').show();
+		$('#pubjob').show();
 		$('#jobHandler').show();
+		$('#changePwd').show();
 	}else{
 		$('#loginbtn').show();
 		$('#logoutbtn').hide();
 		$('#myinfo').hide();
-		$('#jobPub').hide();
+		$('#pubjob').hide();
 		$('#jobHandler').hide();
+		$('#changePwd').hide();
 	}
 });
 
@@ -64,4 +66,9 @@ function jobHandler(statu){
 			},
 			function(data){}
 	);*/
+}
+
+
+function changePwd(){
+	window.location.href=_path+"/company/changePwd";
 }

@@ -24,6 +24,7 @@ import service.UserJobService;
 import utils.GlobalUtil;
 import entrty.CompanyPo;
 import entrty.JobPo;
+import entrty.PageInfo;
 import entrty.UserDetailPo;
 import entrty.UserJobPo;
 
@@ -40,8 +41,8 @@ public class JobAction {
 	public String pubJob(ModelMap model,HttpServletRequest request, HttpServletResponse response ){
 		int companyId = (int) GlobalUtil.getSession("companyId", request);
 		
-		int nowPage = 1;
-		int pageSize = 2;
+		int nowPage = PageInfo.getNowPage();
+		int pageSize = PageInfo.getPageSize();
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
 		String key = request.getParameter("key");
@@ -89,15 +90,18 @@ public class JobAction {
 	
 	@RequestMapping("job/save")
 	public void save(JobPo po ,ModelMap model,HttpServletRequest request, HttpServletResponse response){
-		int companyId = (int) GlobalUtil.getSession("companyId", request);
-		String companyName = (String) GlobalUtil.getSession("companyName", request);
-		int res = jobService.save(po, companyId ,companyName);
 		try {
-			response.sendRedirect("/offer/job/list");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			int companyId = (int) GlobalUtil.getSession("companyId", request);
+			if( companyId == -1){
+				response.sendRedirect("/offer/job/list");
+			}
+			String companyName = (String) GlobalUtil.getSession("companyName", request);
+			int res = jobService.save(po, companyId ,companyName);
+				response.sendRedirect("/offer/job/list");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	@RequestMapping("job/update")
@@ -129,8 +133,8 @@ public class JobAction {
 	@RequestMapping("job/joblist")
 	public String joblist(String name ,ModelMap model,HttpServletRequest request, HttpServletResponse response){
 		
-		int nowPage = 1;
-		int pageSize = 2;
+		int nowPage = PageInfo.getNowPage();
+		int pageSize = PageInfo.getPageSize();
 		String nowpage = request.getParameter("nowPage");
 		String pagesize = request.getParameter("pageSize");
 		String sql = "select * from `jobs` where `statu`=1 and `company_name`='"+name+"'";

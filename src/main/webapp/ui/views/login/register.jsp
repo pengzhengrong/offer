@@ -24,6 +24,8 @@ function checkUserName( username ){
 			//alert(data);
 			if( data == 1 ){
 				$("#warn").html("此用户名已被使用!");
+			}else{
+				$("#warn").html("");
 			}
 		}
 	});
