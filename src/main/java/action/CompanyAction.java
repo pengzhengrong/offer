@@ -79,8 +79,10 @@ public class CompanyAction {
 			
 			if( companyId == -1 || companyId == 0){
 				CompanyPo po = companyService.getCompany(username);
-				GlobalUtil.setSession("companyId", po.getId(), request);
-				GlobalUtil.setSession("companyName", po.getCompanyName(), request);
+				if( po != null ){
+					GlobalUtil.setSession("companyId", po.getId(), request);
+					GlobalUtil.setSession("companyName", po.getCompanyName(), request);
+				}
 			}
 		}
 		

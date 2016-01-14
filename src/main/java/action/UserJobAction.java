@@ -29,7 +29,7 @@ public class UserJobAction {
 	private UserDetailService userDetailService;
 	
 	@ResponseBody
-	@RequestMapping("job/resume")
+	@RequestMapping("userjob/resume")
 	public int resume(String companyName ,String jobName ,ModelMap model,HttpServletRequest request, HttpServletResponse response){
 		String userName = (String) GlobalUtil.getSession("userName", request);
 		if( userName == null ){
@@ -41,7 +41,7 @@ public class UserJobAction {
 		return res;
 	}
 	
-	@RequestMapping("job/handler")
+	@RequestMapping("userjob/handler")
 	public String handler(int statu,ModelMap model,HttpServletRequest request, HttpServletResponse response){
 		debugLog.debug("job/handler", "");
 		if( GlobalUtil.getUserName(request) == null){
@@ -70,7 +70,7 @@ public class UserJobAction {
 	}
 	
 	@ResponseBody
-	@RequestMapping("job/operater")
+	@RequestMapping("userjob/update")
 	public int changeStatu(int id,int key,ModelMap model,HttpServletRequest request, HttpServletResponse response){
 		int res = 0;
 		if( key == 1 ){
@@ -81,7 +81,7 @@ public class UserJobAction {
 		return res;
 	}
 	
-	@RequestMapping("job/person")
+	@RequestMapping("userjob/person")
 	public String personDetail(int userId ,ModelMap model,HttpServletRequest request, HttpServletResponse response){
 		UserDetailPo po = userDetailService.getUserDetail(userId);
 		model.addAttribute("po", po);

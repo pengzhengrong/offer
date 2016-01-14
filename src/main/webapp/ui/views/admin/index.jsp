@@ -12,7 +12,7 @@
 
 $(function(){
 	  //弹框的url  
-    var popup_url = "${rc.contextPath}/login/login";  
+    var popup_url = "${rc.contextPath}/admin/login";  
     //弹框高度  
     var popup_height = "400";  
     //弹框宽度  

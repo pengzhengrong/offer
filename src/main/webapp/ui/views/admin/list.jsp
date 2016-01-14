@@ -16,7 +16,6 @@
 </script>
 </head>
 <body>
-	<!-- <#include "views/index/companyHead.jsp" > -->
 	<jsp:include page="/ui/views/index/adminHead.jsp" />
 	<div class="_position">
 		<span>当前位置：公司列表</span>
@@ -36,8 +35,8 @@
 		<td>${po.companyName}</td>
 		<td>${po.address }</td>
 		<td>
-		<c:if test="${po.statu==1 }"><a href="${rc.contextPath}/admin/update?id=${po.id}&statu=0">禁用</a></c:if>
-		<c:if test="${po.statu==0 }"><a href="${rc.contextPath}/admin/update?id=${po.id}&statu=1">启用</a></c:if>
+		<c:if test="${po.statu==1 }"><a href="javascript:" onclick="window.location.href='${rc.contextPath}/admin/update?id=${po.id}&statu=0'" >禁用</a></c:if>
+		<c:if test="${po.statu==0 }"><a href="javascript:" onclick="window.location.href='${rc.contextPath}/admin/update?id=${po.id}&statu=1'">启用</a></c:if>
 			|<a href="${rc.contextPath}/admin/delete?id=${po.id}">删除</a>
 		</td>
 	</tr>

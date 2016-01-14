@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	function handler(id,key){
 		$.post(
-			"${rc.contextPath}/job/operater",
+			"${rc.contextPath}/userjob/update",
 			{
 				"id":id,
 				"key":key
@@ -30,7 +30,7 @@
 	}	
 	
 	function userDetail(userId){
-		window.location.href="${rc.contextPath}/job/person?userId="+userId;
+		window.location.href="${rc.contextPath}/userjob/person?userId="+userId;
 	}
 </script>
 </head>
@@ -71,7 +71,7 @@
 	</table>
 </div>
 <div>
-<p:Page dataSourceUrl="${rc.contextPath}/job/handler" form="searchForm" pageSize="${pageSize }" totalRows="${totalRows}" nowPage="${nowPage }" />
+<p:Page dataSourceUrl="${rc.contextPath}/userjob/handler" form="searchForm" pageSize="${pageSize }" totalRows="${totalRows}" nowPage="${nowPage }" />
 </div>
 	<!-- last div can't delete -->
 	</div>

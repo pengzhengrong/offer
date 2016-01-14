@@ -19,7 +19,7 @@ var username = '${username}';
 var _path = '${rc.contextPath}';
 
 function resume(companyName,jobName){
-	$.post("${rc.contextPath}/job/resume",
+	$.post("${rc.contextPath}/userjob/resume",
 		{
 			"companyName":companyName,
 			"jobName":jobName

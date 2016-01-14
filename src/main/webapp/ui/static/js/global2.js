@@ -56,7 +56,7 @@ function mainToIndex(){
 }
 
 function jobHandler(statu){
-	window.location.href=_path+"/job/handler?statu="+statu;
+	window.location.href=_path+"/userjob/handler?statu="+statu;
 	/*$.post(
 			_path+"/job/handler",
 			{

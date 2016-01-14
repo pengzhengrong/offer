@@ -65,6 +65,7 @@ create table `company`(
 	`update_time` int(11) not null default 0,
 	`statu` tinyint(1) not null default 1 comment'1 正常 ，0 无效',
 	primary key(`id`),
+	unique(`company_name`),
 	key(`username`,`password`)
 )engine=myisam default charset=utf8 auto_increment=1;
 -- alter table `company` add `desc` text default '';
@@ -82,6 +83,7 @@ create table `jobs`(
 	`update_time` int(11) not null default 0,
 	`statu` tinyint(1) not null default 1 comment'1 正常 ，0 无效',
 	primary key(`id`),
+	unique(`name`),
 	key(`company_id`)
 )engine=myisam default charset=utf8 auto_increment=1;
 
@@ -91,14 +93,17 @@ create table `user_job`(
 	`id` int(11) unsigned not null auto_increment,
 	`user_id` int(11) unsigned not null default 0,
 	`company_name` varchar(100) not null default '',
-	`user_name` varchar(30) unsigned not null ,
-	`job_name` varchar(30) unsigned not null ,
+	`user_name` varchar(30)  not null ,
+	`job_name` varchar(30)  not null ,
 	`create_time` int(11) not null default 0,
 	`update_time` int(11) not null default 0,
 	`statu` tinyint(1) not null default 0 comment'0 正在处理，1 处理完成，-1 拒绝',
 	primary key(`id`),
+	unique(`user_name`,`company_name`,`job_name`),
 	key(`company_name`,`job_name`)
 )engine=myisam default charset=utf8 auto_increment=1;
+
+insert into `admin`(`username`,`password`) values('admin','123456');
 
 
 

@@ -78,6 +78,10 @@ public class AdminAction {
 	
 	@RequestMapping("admin/list")
 	public String list(ModelMap model,HttpServletRequest request, HttpServletResponse response){
+		String username = GlobalUtil.getUserName(request);
+		if( username == null ){
+			return "admin/index";
+		}
 		String sql = "select * from `company`";
 		int nowPage = 1;
 		int pageSize = 2;
@@ -138,6 +142,10 @@ public class AdminAction {
 	
 	@RequestMapping("admin/List")
 	public String List(ModelMap model,HttpServletRequest request, HttpServletResponse response){
+		String username = GlobalUtil.getUserName(request);
+		if( username == null ){
+			return "admin/index";
+		}
 		String sql = "select * from `user_detail`";
 		int nowPage = 1;
 		int pageSize = 2;
@@ -174,6 +182,22 @@ public class AdminAction {
 		adminService.saveOrUpdate(sql);
 		try {
 			response.sendRedirect("/offer/admin/List");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	@RequestMapping("admin/logout")
+	public void doLogout(ModelMap model, HttpServletRequest request,
+			HttpServletResponse response) {
+		String[] args = { "username" };
+		GlobalUtil.removeAll(args, request);
+		debugLog.debug("dologout", "登出 ");
+		try {
+			response.sendRedirect("/offer/admin/index");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -41,8 +41,8 @@
 		<td>${po.tel}</td>
 		<td>${po.address }</td>
 		<td>
-		<c:if test="${po.statu==1 }"><a href="${rc.contextPath}/admin/Update?id=${po.id}&statu=0">禁用</a></c:if>
-		<c:if test="${po.statu==0 }"><a href="${rc.contextPath}/admin/Update?id=${po.id}&statu=1">启用</a></c:if>
+		<c:if test="${po.statu==1 }"><a href="javascript:" onclick="window.location.href='${rc.contextPath}/admin/Update?id=${po.id}&statu=0'" >禁用</a></c:if>
+		<c:if test="${po.statu==0 }"><a href="javascript:" onclick="window.location.href='${rc.contextPath}/admin/Update?id=${po.id}&statu=1'" >启用</a></c:if>
 			|<a href="${rc.contextPath}/admin/Delete?id=${po.id}">删除</a>
 		</td>
 	</tr>

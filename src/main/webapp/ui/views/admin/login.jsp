@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${rc.contextPath }/ui/static/js/jquery.min.js"></script>
 <script type="text/javascript">
 function dosubmit(){
-	$("#form1").attr("action","${rc.contextPath}/company/dologin");
+	$("#form1").attr("action","${rc.contextPath}/admin/dologin");
  	$("#form1").submit();
 }
 
