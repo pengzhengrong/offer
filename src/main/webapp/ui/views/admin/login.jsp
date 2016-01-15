@@ -27,7 +27,6 @@ function dosubmit(){
 			<td>  <input type="password" name="password" placeholder="请输入密码" value=""></td>
 		</tr>
 		<tr>
-			<td><input type="checkbox" name="cookie" value="true">自动登入</td>
 			<td><input type="reset" value="重置">	<input type="button"  onclick="dosubmit()" value="游客登入"></td>
 		</tr>
 	</table>

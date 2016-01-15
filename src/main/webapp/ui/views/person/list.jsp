@@ -9,16 +9,17 @@
 <link type="text/css" rel="stylesheet"
 	href="${rc.contextPath}/ui/static/css/global.css" />
 <script type="text/javascript"
-	src="${rc.contextPath}/ui/static/js/jquery.min.js"></script>
+	src="${rc.contextPath}/ui/static/js/jquery1.js"></script>
+	<script type="text/javascript"
+	src="${rc.contextPath}/ui/static/js/ajaxfileupload.js"></script>
 </head>
 <body>
-	<!-- <#include "views/index/head.jsp" > -->
-	<jsp:include page="/ui/views/index/head.jsp" />
-	<div class="_position" style="padding-right: 10px;">
+<jsp:include page="/ui/views/index/head.jsp" /> 
+	<div class="_position" style="float:right;margin-right: 50px;">
 		<span>当前位置：个人信息</span>
 	</div>
 	<br>
-	<div class="_left">
+	<div class="_left" style="float:left;margin-left: 250px;">
 		<form id="personForm" action="${rc.contextPath}/person/update" method="post">
 			<input type="hidden" name="id" value="${po.id}" />
 			<table class="easyTable">
@@ -76,14 +77,16 @@
 		</form>
 	</div>
 	
-	<div class="_center">
+	<div class="_center" style="padding-left:30px;">
 		<input form="personForm" name="projectName" placeholder="项目名称" value="${po.projectName}" ><br><br>
 		<textarea style="width: 500px;" name="projectDesc" form="personForm" rows="10" cols="10" placeholder="请描述您的项目" >${po.projectDesc}</textarea>
 		<br><br>
 		<input type="hidden" form="personForm" name="thumb" value="${po.thumb }" >
-		<form  id="thumbForm" action="/offer/person/upload"  enctype="multipart/form-data">
-			<input type="file" name="filename" multiple="multiple" /> 
-			<input id="upload" type="submit"  value="开始上传" /> <!-- onclick="doSubmit()" -->
+		<form  id="thumbForm" method="post"  enctype="multipart/form-data">
+			<input type="file" id="file" name="file" multiple="multiple" />
+			<input id="upload" type="submit"  value="开始上传" /> 
+			<!-- onclick="doSubmit()" -->
+			<input type="button" value="upload" onclick="return uploadTo();">
 		</form>
 		<br>
 		
@@ -94,5 +97,37 @@
 	<!-- last div can't delete -->
 </div>
 </body>
+<script type="text/javascript">
+function uploadTo()
+{
+	alert(1);
+    $("#loading")
+    .ajaxStart(function(){
+        $(this).show();            
+    })
+    .ajaxComplete(function(){
+        $(this).hide();            
+    });
 
+    $.ajaxFileUpload
+    (
+        {
+            url:'/offer/person/upload',
+            secureuri:false,
+            fileElementId:'file',
+            success: function (data)
+            {                
+               alert(data);
+            },
+            error: function (data)
+            {
+                alert(data);
+            }
+        }
+    )
+    
+   // return false;
+
+}
+</script>
 </html>

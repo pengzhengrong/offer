@@ -122,6 +122,13 @@ public class CompanyAction {
 	public void update(CompanyPo po, ModelMap model,
 			HttpServletRequest request, HttpServletResponse response) {
 		int res = companyService.update(po);
+		if( res == 1){
+			Object companyName = GlobalUtil.getSession("companyName", request);
+			if( (int)companyName == -1){
+				GlobalUtil.setSession("companyName", po.getCompanyName(), request);
+				GlobalUtil.setSession("companyId", po.getId(), request);
+			}
+		}
 		try {
 			response.sendRedirect("list");
 		} catch (IOException e) {

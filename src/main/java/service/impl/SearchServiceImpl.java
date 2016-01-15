@@ -70,7 +70,7 @@ public class SearchServiceImpl extends BaseDao implements SearchService{
 			}
 		}
 		totalRows = this.getMaxRows(sql.toString());
-		DbLog.querySuccess(sql.toString()+" totalRows="+totalRows);
+		DbLog.querySuccess(sql.toString()+" ; totalRows="+totalRows);
 		return globalDao.queryByPage(sql.toString(), nowPage, pageSize, objClass);
 	}
 	

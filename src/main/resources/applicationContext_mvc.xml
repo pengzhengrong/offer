@@ -11,7 +11,7 @@
 
 
 
-	<import resource="applicationContext.xml" />
+	<!-- <import resource="applicationContext.xml" /> -->
 	<context:component-scan base-package="action" />
 	
 	<!-- service -->

@@ -11,8 +11,8 @@
 	href="${rc.contextPath}/ui/static/css/metro.css" />
 <link rel="stylesheet" type="text/css" media="all"
 	href="${rc.contextPath}/ui/static/css/global.css" />
-<script type="text/javascript" src="${rc.contextPath}/ui/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="${rc.contextPath}/ui/static/js/jquery.plugins.min.js"></script>
+<%-- <script type="text/javascript" src="${rc.contextPath}/ui/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/ui/static/js/jquery.plugins.min.js"></script> --%>
 <script type="text/javascript" src="${rc.contextPath}/ui/static/js/global.js"></script>
 <script type="text/javascript">
 var username = '${username}';

@@ -2,6 +2,7 @@ package utils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,12 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import loggerUtils.DbLog;
 import loggerUtils.debugLog;
 import net.sf.json.JSONObject;
+import service.UserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 public class FilterUtils implements HandlerInterceptor{
 
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public void afterCompletion(HttpServletRequest arg0,
 			HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -59,11 +65,13 @@ public class FilterUtils implements HandlerInterceptor{
 		debugLog.debug("prehandler", "用户："+user);
 		if(user != null){
 			JSONObject json = JSONObject.fromObject(user);
-			username = (String) json.get("username");
+			username = URLDecoder.decode( (String)json.get("username"), "utf-8") ;
 			password = (String) json.get("password");
 		}
 		
-		if(username.equals("pzr") && password.equals("pzr")){
+		boolean flag = userService.checkUser(username, password);
+		
+		if( flag ){
 			debugLog.debug("preHandler", "登入成功!");
 			return true;
 		}else{

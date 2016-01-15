@@ -9,7 +9,7 @@ create table `user_detail`(
 	`address` varchar(100)  default '',
 	`qq` char(11)  default '',
 	`mail` varchar(50)  default '',
-	`hope_salay` int(11) unsigned  default 0,
+	`hope_salay` varchar(11)  default '',
 	`tel` varchar(20)  default '',
 	`thumb` text default '',
 	`project_name` varchar(50) default '',
